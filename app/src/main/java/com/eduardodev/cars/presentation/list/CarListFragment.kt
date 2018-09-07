@@ -1,18 +1,18 @@
 package com.eduardodev.cars.presentation.list
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.eduardodev.cars.R
-import com.eduardodev.cars.presentation.model.*
+import com.eduardodev.cars.presentation.model.Car
+import com.eduardodev.cars.presentation.model.Resource
+import com.eduardodev.cars.presentation.model.Success
+import com.eduardodev.cars.presentation.set.CarSetViewModel
 import kotlinx.android.synthetic.main.fragment_car_list.*
-import org.jetbrains.anko.getStackTraceString
-import org.jetbrains.anko.support.v4.longToast
 
 
 class CarListFragment : Fragment() {
@@ -21,7 +21,7 @@ class CarListFragment : Fragment() {
         fun newInstance() = CarListFragment()
     }
 
-    private val model by lazy { ViewModelProviders.of(this)[CarListViewModel::class.java] }
+    private val model by lazy { ViewModelProviders.of(activity!!)[CarSetViewModel::class.java] }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -31,43 +31,17 @@ class CarListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        carListRecyclerView.setHasFixedSize(true)
         model.getCars().observe(this, Observer { resource -> resource?.let { updateUI(it) } })
     }
 
     private fun updateUI(resource: Resource) {
-        when (resource) {
-            is Success -> showCars(resource.result)
-            is Failure -> showFailure(resource.exception)
-            is Process -> showProgress(true)
-            ConnectionFailure -> showConnectionFailure()
-        }
+        if (resource !is Success) return
+        showCars(resource.result)
     }
 
     private fun showCars(result: Any) {
-        showProgress(false)
-
-        if (result !is List<*>) {
-            showFailure(Exception("result is not a list"))
-            return
-        }
-
+        if (result !is List<*>) return
         val cars = result.mapNotNull { it as? Car }
         carListRecyclerView.adapter = CarListAdapter(cars)
-    }
-
-    private fun showFailure(exception: Exception) {
-        showProgress(false)
-        Log.e(javaClass.simpleName, exception.getStackTraceString())
-        longToast(R.string.failure_generic)
-    }
-
-    private fun showConnectionFailure() {
-        showProgress(false)
-        longToast(R.string.failure_connection)
-    }
-
-    private fun showProgress(show: Boolean) {
-        carListProgress.visibility = if (show) View.VISIBLE else View.GONE
     }
 }

@@ -1,7 +1,7 @@
 package com.eduardodev.cars.presentation.list
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.eduardodev.cars.presentation.model.Car
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_car.*
