@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Cars</string>
+    <string name="failure_connection">It seems you there is no network connection…</string>
+    <string name="failure_generic">It seems something is malfunctioning…</string>
 </resources>

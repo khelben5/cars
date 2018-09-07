@@ -1,9 +1,10 @@
-package com.eduardodev.cars
+package com.eduardodev.cars.presentation
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import com.eduardodev.cars.list.CarListFragment
+import com.eduardodev.cars.R
+import com.eduardodev.cars.presentation.list.CarListFragment
 
 const val TAG_CAR_LIST_FRAGMENT = "carListFragment"
 
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private fun addCarListFragment() {
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.mainContainer, createCarListFragment(), TAG_CAR_LIST_FRAGMENT)
+                .replace(R.id.mainRoot, createCarListFragment(), TAG_CAR_LIST_FRAGMENT)
                 .commit()
     }
 
