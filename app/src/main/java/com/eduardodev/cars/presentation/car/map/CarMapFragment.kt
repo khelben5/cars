@@ -1,4 +1,4 @@
-package com.eduardodev.cars.presentation.map
+package com.eduardodev.cars.presentation.car.map
 
 import android.os.Bundle
 import android.view.LayoutInflater

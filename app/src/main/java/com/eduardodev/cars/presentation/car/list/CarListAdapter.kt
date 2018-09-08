@@ -1,4 +1,4 @@
-package com.eduardodev.cars.presentation.list
+package com.eduardodev.cars.presentation.car.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

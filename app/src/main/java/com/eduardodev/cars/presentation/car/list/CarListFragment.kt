@@ -1,4 +1,4 @@
-package com.eduardodev.cars.presentation.list
+package com.eduardodev.cars.presentation.car.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.eduardodev.cars.R
+import com.eduardodev.cars.presentation.car.set.CarSetViewModel
 import com.eduardodev.cars.presentation.model.Car
 import com.eduardodev.cars.presentation.model.Resource
 import com.eduardodev.cars.presentation.model.Success
-import com.eduardodev.cars.presentation.set.CarSetViewModel
 import kotlinx.android.synthetic.main.fragment_car_list.*
 
 
@@ -32,6 +33,10 @@ class CarListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         model.cars.observe(this, Observer { resource -> resource?.let { updateUI(it) } })
+        carListRecyclerView.addItemDecoration(DividerItemDecoration(
+                activity,
+                DividerItemDecoration.VERTICAL
+        ))
     }
 
     private fun updateUI(resource: Resource) {

@@ -5,7 +5,7 @@
     android:id="@+id/carSetRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.set.CarSetActivity">
+    tools:context=".presentation.car.set.CarSetActivity">
 
     <FrameLayout
         android:id="@+id/carSetFragmentContainer"

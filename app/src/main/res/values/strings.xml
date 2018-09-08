@@ -4,4 +4,7 @@
     <string name="failure_generic">It seems something is malfunctioning…</string>
     <string name="bottom_navigation_list">List</string>
     <string name="bottom_navigation_map">Map</string>
+    <string name="car_list_item_main_description_template">%1$s (%2$s)</string>
+    <string name="car_list_item_secondary_description_template">%1$s/%2$s</string>
+    <string name="car_list_item_fuel_level_template">%d \%%</string>
 </resources>

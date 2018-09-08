@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".presentation.set.CarSetActivity">
+        <activity android:name="com.eduardodev.cars.presentation.car.set.CarSetActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
