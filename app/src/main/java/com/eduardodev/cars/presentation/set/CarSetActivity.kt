@@ -34,7 +34,7 @@ class CarSetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_set)
         savedInstanceState?.let { selectedItemId = it.getInt(STATE_SELECTED_ITEM_ID) }
-        model.getCars().observe(this, Observer { resource -> resource?.let { updateUI(it) } })
+        model.cars.observe(this, Observer { resource -> resource?.let { updateUI(it) } })
     }
 
     override fun onResume() {

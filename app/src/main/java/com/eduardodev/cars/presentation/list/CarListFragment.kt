@@ -31,7 +31,7 @@ class CarListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        model.getCars().observe(this, Observer { resource -> resource?.let { updateUI(it) } })
+        model.cars.observe(this, Observer { resource -> resource?.let { updateUI(it) } })
     }
 
     private fun updateUI(resource: Resource) {
