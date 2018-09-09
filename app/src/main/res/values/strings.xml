@@ -13,7 +13,8 @@
 
     <!-- Car list item. -->
     <string name="car_list_item_main_description_template">%1$s (%2$s)</string>
-    <string name="car_list_item_secondary_description_template">%1$s/%2$s</string>
+    <string name="car_list_item_fuel_template">Fuel: %s</string>
+    <string name="car_list_item_transmission_template">Transmission: %s</string>
     <string name="car_list_item_fuel_level_template">%d \%%</string>
 
     <!-- Error texts. -->

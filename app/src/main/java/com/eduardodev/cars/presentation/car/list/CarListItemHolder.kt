@@ -28,9 +28,12 @@ class CarListItemHolder(override val containerView: View) :
                 car.model,
                 car.plate
         )
-        listItemCarSecondaryDescription.text = containerView.resources.getString(
-                R.string.car_list_item_secondary_description_template,
-                car.fuelType,
+        listItemCarFuel.text = containerView.resources.getString(
+                R.string.car_list_item_fuel_template,
+                car.fuelType
+        )
+        listItemCarTransmission.text = containerView.resources.getString(
+                R.string.car_list_item_transmission_template,
                 car.transmission
         )
         listItemCarFuelLevel.text = containerView.resources.getString(
