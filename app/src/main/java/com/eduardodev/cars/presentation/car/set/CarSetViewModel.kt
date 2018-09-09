@@ -1,6 +1,6 @@
 package com.eduardodev.cars.presentation.car.set
 
-import androidx.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModel
 import com.eduardodev.cars.data.repository.CarDataRepository
 import com.eduardodev.cars.presentation.repository.CarRepository
 

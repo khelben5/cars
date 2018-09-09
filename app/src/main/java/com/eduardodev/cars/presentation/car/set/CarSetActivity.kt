@@ -1,16 +1,18 @@
 package com.eduardodev.cars.presentation.car.set
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.eduardodev.cars.R
 import com.eduardodev.cars.presentation.car.list.CarListFragment
 import com.eduardodev.cars.presentation.car.map.CarMapFragment
 import com.eduardodev.cars.presentation.model.*
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.android.synthetic.main.activity_car_set.*
 import org.jetbrains.anko.getStackTraceString
 import org.jetbrains.anko.longToast
@@ -18,6 +20,7 @@ import org.jetbrains.anko.longToast
 private const val TAG_LIST_FRAGMENT = "listFragment"
 private const val TAG_MAP_FRAGMENT = "mapFragment"
 private const val STATE_SELECTED_ITEM_ID = "selectedItemId"
+private const val REQUEST_CODE_API_ERROR_DIALOG = 1
 
 class CarSetActivity : AppCompatActivity() {
 
@@ -42,6 +45,7 @@ class CarSetActivity : AppCompatActivity() {
         carSetBottomNavigation.setOnNavigationItemSelectedListener {
             onNavigationItemSelected(it.itemId)
         }
+        checkForGooglePlayServices()
     }
 
     override fun onPause() {
@@ -136,4 +140,13 @@ class CarSetActivity : AppCompatActivity() {
     private fun createListFragment() = CarListFragment.newInstance()
 
     private fun createMapFragment() = CarMapFragment.newInstance()
+
+    private fun checkForGooglePlayServices() {
+        val googleApiAvailability = GoogleApiAvailability.getInstance()
+        val availability = googleApiAvailability.isGooglePlayServicesAvailable(this)
+        if (availability == ConnectionResult.SUCCESS) return
+        googleApiAvailability
+                .getErrorDialog(this, availability, REQUEST_CODE_API_ERROR_DIALOG)
+                .show()
+    }
 }

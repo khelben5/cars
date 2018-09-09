@@ -1,7 +1,7 @@
 package com.eduardodev.cars.data.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Transformations
 import com.eduardodev.cars.data.dataSource.DataSource
 import com.eduardodev.cars.data.dataSource.NetworkDataSource
 import com.eduardodev.cars.data.mapper.CarMapper

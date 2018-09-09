@@ -1,6 +1,6 @@
 package com.eduardodev.cars.presentation.repository
 
-import androidx.lifecycle.LiveData
+import android.arch.lifecycle.LiveData
 import com.eduardodev.cars.presentation.model.Resource
 
 

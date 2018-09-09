@@ -1,7 +1,7 @@
 package com.eduardodev.cars.data.dataSource
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import com.eduardodev.cars.data.extension.readContent
 import com.eduardodev.cars.data.network.CarNetworkEntity
 import com.eduardodev.cars.data.network.CarService
