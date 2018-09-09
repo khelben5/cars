@@ -15,6 +15,7 @@ import com.eduardodev.cars.presentation.model.Success
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
@@ -71,6 +72,7 @@ class CarMapFragment : Fragment() {
                                     it.model,
                                     it.plate
                             ))
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.car))
             )
         }
         map.moveCamera(CameraUpdateFactory.newLatLngBounds(
