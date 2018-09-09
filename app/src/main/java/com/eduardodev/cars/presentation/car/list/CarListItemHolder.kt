@@ -22,20 +22,45 @@ class CarListItemHolder(override val containerView: View) :
 
     @SuppressLint("StringFormatInvalid")
     private fun updateUI(car: Car) {
-        Picasso.get().load(car.pictureUrl).into(listItemCarPicture)
+        updatePictureUI(car)
+        updateDescriptionUI(car)
+        updateFuelTypeUI(car)
+        updateTransmissionUI(car)
+        updateFuelLevelUI(car)
+    }
+
+    private fun updatePictureUI(car: Car) {
+        Picasso.get()
+                .load(car.pictureUrl)
+                .error(R.drawable.car)
+                .fit()
+                .centerInside()
+                .into(listItemCarPicture)
+    }
+
+    private fun updateDescriptionUI(car: Car) {
         listItemCarMainDescription.text = containerView.resources.getString(
                 R.string.car_list_item_main_description_template,
                 car.model,
                 car.plate
         )
+    }
+
+    private fun updateFuelTypeUI(car: Car) {
         listItemCarFuel.text = containerView.resources.getString(
                 R.string.car_list_item_fuel_template,
                 car.fuelType
         )
+    }
+
+    private fun updateTransmissionUI(car: Car) {
         listItemCarTransmission.text = containerView.resources.getString(
                 R.string.car_list_item_transmission_template,
                 car.transmission
         )
+    }
+
+    private fun updateFuelLevelUI(car: Car) {
         listItemCarFuelLevel.text = containerView.resources.getString(
                 R.string.car_list_item_fuel_level_template,
                 car.fuelLevel
@@ -46,7 +71,7 @@ class CarListItemHolder(override val containerView: View) :
                     in 75..100 -> android.R.color.holo_green_dark
                     in 25..74 -> android.R.color.holo_orange_dark
                     in 0..24 -> android.R.color.holo_red_dark
-                    else -> android.R.color.black // Not expected.)
+                    else -> android.R.color.black // Not expected.
                 }
         ))
     }
