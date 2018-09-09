@@ -1,10 +1,23 @@
 <resources>
     <string name="app_name">Cars</string>
-    <string name="failure_connection">It seems you there is no network connection…</string>
-    <string name="failure_generic">It seems something is malfunctioning…</string>
+
+    <!-- Car set. -->
+    <string name="car_set_menu_info">Info</string>
     <string name="bottom_navigation_list">List</string>
     <string name="bottom_navigation_map">Map</string>
+
+    <!-- Information dialog. -->
+    <string name="information_message">Icon made by Freepik from www.flaticon.com</string>
+    <string name="information_button">Visit</string>
+    <string name="icon_reference_url">http://www.freepik.com</string>
+
+    <!-- Car list item. -->
     <string name="car_list_item_main_description_template">%1$s (%2$s)</string>
     <string name="car_list_item_secondary_description_template">%1$s/%2$s</string>
     <string name="car_list_item_fuel_level_template">%d \%%</string>
+
+    <!-- Error texts. -->
+    <string name="failure_connection">It seems you there is no network connection…</string>
+    <string name="failure_generic">It seems something is malfunctioning…</string>
+
 </resources>

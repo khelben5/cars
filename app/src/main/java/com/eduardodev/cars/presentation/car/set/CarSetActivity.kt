@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.eduardodev.cars.R
 import com.eduardodev.cars.presentation.car.list.CarListFragment
 import com.eduardodev.cars.presentation.car.map.CarMapFragment
+import com.eduardodev.cars.presentation.dialog.InformationDialogFragment
 import com.eduardodev.cars.presentation.model.*
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
@@ -19,19 +22,26 @@ import org.jetbrains.anko.longToast
 
 private const val TAG_LIST_FRAGMENT = "listFragment"
 private const val TAG_MAP_FRAGMENT = "mapFragment"
+private const val TAG_INFORMATION_DIALOG_FRAGMENT = "informationDialogFragment"
 private const val STATE_SELECTED_ITEM_ID = "selectedItemId"
 private const val REQUEST_CODE_API_ERROR_DIALOG = 1
 
 class CarSetActivity : AppCompatActivity() {
 
     private val model by lazy { ViewModelProviders.of(this)[CarSetViewModel::class.java] }
+    private var selectedItemId: Int? = null
+
     private val listFragment: Fragment? by lazy {
         supportFragmentManager.findFragmentByTag(TAG_LIST_FRAGMENT)
     }
+
     private val mapFragment: Fragment? by lazy {
         supportFragmentManager.findFragmentByTag(TAG_MAP_FRAGMENT)
     }
-    private var selectedItemId: Int? = null
+
+    private val informationDialogFragment: Fragment? by lazy {
+        supportFragmentManager.findFragmentByTag(TAG_INFORMATION_DIALOG_FRAGMENT)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +66,19 @@ class CarSetActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(STATE_SELECTED_ITEM_ID, carSetBottomNavigation.selectedItemId)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.car_set, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_info -> {
+            showInformationDialogFragmentIfNeeded()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     private fun updateUI(resource: Resource) {
@@ -123,6 +146,10 @@ class CarSetActivity : AppCompatActivity() {
         if (mapFragment == null) addMapFragment()
     }
 
+    private fun showInformationDialogFragmentIfNeeded() {
+        if (informationDialogFragment == null) showInformationDialogFragment()
+    }
+
     private fun addListFragment() {
         supportFragmentManager.beginTransaction()
                 .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
@@ -135,6 +162,14 @@ class CarSetActivity : AppCompatActivity() {
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
                 .replace(R.id.carSetFragmentContainer, createMapFragment(), TAG_MAP_FRAGMENT)
                 .commit()
+    }
+
+    private fun showInformationDialogFragment() {
+        InformationDialogFragment.newInstance(
+                getString(R.string.information_message),
+                getString(R.string.information_button),
+                getString(R.string.icon_reference_url)
+        ).show(supportFragmentManager, TAG_INFORMATION_DIALOG_FRAGMENT)
     }
 
     private fun createListFragment() = CarListFragment.newInstance()
